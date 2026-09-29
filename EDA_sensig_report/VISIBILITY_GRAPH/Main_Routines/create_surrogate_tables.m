@@ -1,10 +1,17 @@
+%%%%%
+% This routine splits the EDA SMNA signal windows saved in the previous step
+% (cust_signal_for_esgo_eda.m) into trainer and trainee tables. The tables
+% contain the 60 s and 180 s windows into which the signal was previously
+% divided. These tables will be used to create the homogeneous and
+% non-homogeneous surrogates in the following routine, surrogate_shuffled.m.
 clear; close all; clc;
-addpath('C:\Users\annad\PycharmProjects\MOONSHINE\MATLAB\subroutines')
+addpath('\subroutines')
 % --- Settings ---
-deskPath = 'C:\Users\annad\OneDrive - University of Pisa\Desktop'; % Set your path
+deskPath = ''; % Set your path
 sessioni = {'DATI_SESSIONE1','DATI_SESSIONE2','DATI_SESSIONE3'};
-target_row = 19; % Change to 20 if you prefer the 60s segmentation
-saveRootFolder='RISULTATI_MOONSHINE';
+%target_row = 19; 180s segmentation
+target_row = 20;% 60s segmentation
+saveRootFolder='RESULTS';
 
 esgosavefolder=fullfile(deskPath,saveRootFolder,'ESGO_EDA_SMNA',"SURROGATES","tables");
 create_dir(esgosavefolder)
