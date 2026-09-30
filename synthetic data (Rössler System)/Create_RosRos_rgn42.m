@@ -34,7 +34,7 @@ Data = struct();
 
 for k = 1:length(c)
     param = strcat("c_", num2str(k));
-    fprintf('Simulazione in corso per kappa = %.2f...\n', c(k));
+    fprintf('Simulation for k = %.2f...\n', c(k));
     
     for kk = 1:Rep_n
         name = strcat("s", num2str(kk));
@@ -68,14 +68,14 @@ Data.(syst_name).time = t_clean;
 for k = 1:length(c)
     param = strcat("c_", num2str(k));
     
-    figure('Name', sprintf('Accoppiamento kappa = %.2f', c(k)));
+    figure('Name', sprintf('Coupling k = %.2f', c(k)));
     
     % Rössler Driver (X)
     subplot(2,2,1)
     plot3(Data.(syst_name).(param).s1.x1, ...
           Data.(syst_name).(param).s1.x2, ...
           Data.(syst_name).(param).s1.x3, 'b');
-    title('Driver System (Oscillatore 1: \omega_1 = 0.5)');
+    title('Driver System (Oscillator 1: \omega_1 = 0.5)');
     xlabel('x_1'); ylabel('x_2'); zlabel('x_3'); grid on;
     
     % Rössler Driven (Y)
@@ -83,24 +83,24 @@ for k = 1:length(c)
     plot3(Data.(syst_name).(param).s1.y1, ...
           Data.(syst_name).(param).s1.y2, ...
           Data.(syst_name).(param).s1.y3, 'r');
-    title('Response System (Oscillatore 2: \omega_2 = 2.515)');
+    title('Response System (Oscillator 2: \omega_2 = 2.515)');
     xlabel('y_1'); ylabel('y_2'); zlabel('y_3'); grid on;
     
-    sgtitle(sprintf('Sistema di Rössler Accoppiato (\\kappa = %.2f)', c(k)))
+    sgtitle(sprintf('Coupled Rössler system(\\k = %.2f)', c(k)))
     
     % Time series (x1 vs y1)
     subplot(2,1,2)
     plot(t_clean, Data.(syst_name).(param).s1.x1, 'b', ...
          t_clean, Data.(syst_name).(param).s1.y1, 'r');
     legend('Driver x_1', 'Response y_1');
-    xlabel('Tempo [s]'); ylabel('Ampiezza'); grid on;
+    xlabel('Time [s]'); ylabel('Amplitude'); grid on;
 end
 
 % _________________________________________________________________________
 %% Saving
 
 save(save_path, 'Data');
-fprintf('✔ Dataset salvato con successo in: %s\n', save_path);
+fprintf('Dataset saved in: %s\n', save_path);
 
 % _________________________________________________________________________
 %% Coupled Rössler Dynamical System Function
