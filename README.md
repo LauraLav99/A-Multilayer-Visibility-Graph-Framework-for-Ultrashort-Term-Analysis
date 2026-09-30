@@ -27,14 +27,9 @@
 
 ### EDA preprocessing
 
-- [cvxEDA](https://it.mathworks.com/matlabcentral/fileexchange/53326-cvxeda)
-
+- [cvxEDA](https://it.mathworks.com/matlabcentral/fileexchange/53326-cvxeda) : A Greco, G Valenza, A Lanata, EP Scilingo, and L Citi “cvxEDA: a Convex Optimization Approach to Electrodermal Activity Processing” IEEE Transactions on Biomedical Engineering, 2015 DOI: 10.1109/TBME.2015.2474131
 ### Visibility Graph
+- [fast_nvg](https://it.mathworks.com/matlabcentral/fileexchange/182737-fast-natural-visibility-graph-nvg-for-matlab) : Giovanni Iacobello (2026). Fast natural visibility graph (NVG) for MATLAB, MATLAB Central File Exchange;Implementation of natural visibility graph based on: Lacasa, L., Luque, B., Ballesteros, F., Luque, J., & Nuno, J. C. (2008). From time series to complex networks: The visibility graph.PNAS, 105(13), 4972-4975
+- [MutualInfo](https://it.mathworks.com/matlabcentral/fileexchange/29039-mutual-information-2-variablle) : Taesam Lee (2026). Mutual Information -2 variablle 
 
-- [fast_hvg](https://it.mathworks.com/matlabcentral/fileexchange/182736-fast-horizontal-visibility-graph-hvg-for-matlab)
-- [fast_nvg](https://it.mathworks.com/matlabcentral/fileexchange/182737-fast-natural-visibility-graph-nvg-for-matlab)
-- [MutualInfo](https://it.mathworks.com/matlabcentral/fileexchange/29039-mutual-information-2-variablle)
-- `entropia`
-- `Mddisten`
-- [embedding](https://github.com/danm0nster/mdembedding/tree/master)
-- [sigstar](https://it.mathworks.com/matlabcentral/fileexchange/39696-raacampbell-sigstar)
+
