@@ -18,7 +18,7 @@ addpath('C:\Users\Utente\Desktop\toolbox per MATLAB\funzioni MI\MutualInfo')
 %  https://doi.org/10.1038/hr.2010.138 toglie extrasistole
 fd = "Data\"; %path to save
 
-%% Importa metadata e specifica opzioni analisi
+%% Import data and analysis option
 
 %Load metadata-------------------------------------------------------------
 meta = readtable("E:\HYPOL_FOR_SHARING\HYPOL clinical characteristics.xls");
