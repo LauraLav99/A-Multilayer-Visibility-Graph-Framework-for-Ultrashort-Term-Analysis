@@ -1,8 +1,18 @@
 # A Multilayer Visibility Graph Framework for Ultrashort-Term Analysis
 
 ## ROSSLER
-
+- `Create_RosRos_rgn42.m`: generates synthetic multivariate time series from two unidirectionally coupled Rössler systems (driver system $X: x_1, x_2, x_3$ and response system $Y: y_1, y_2, y_3$) using `ode45` numerical integration over $t \in [0, 2753]$ s sampled at $f_s = 4$ Hz ($\Delta t = 0.25$ s) with a fixed random seed (`rng(42)`). It simulates 30 realizations for each of the 4 coupling strengths ($\kappa \in \{0, 0.35, 0.7, 1.1\}$) under additive Gaussian white noise ($\sigma = 0.03$), discards the first 1000 transient samples, and saves the resulting dataset to `Dati_RosRos_rgn42.mat`
+- `Analysis_rosros.m`: performs multilayer visibility graph (VG) analysis on synthetic time series generated from coupled Rössler systems across 4 coupling levels and 30 realizations over multiple window lengths ($N \in \{30, 60, 120, 240, 480, 600, 720, 900, 1200, 2400, 3600\}$ samples). It calculates:
+  - **Single-layer VGs**: Average Degree (DA) for each individual oscillator series ($x_1, x_2, x_3, y_1, y_2, y_3$).
+  - **Duplex VGs**: Inter-layer Mutual Information ($I_{\text{tot2}}$), Average Degree (DA), and Mean Phase Coherence (MPC) for all 15 pairwise series combinations.
+  - **6-layer Multiplex VGs**: Global Average Degree (DA) for the complete multiplex
+  - 
 ## HYPOL
+- `Analysis_hypol.m`: processes beat-to-beat cardiovascular time series (RR intervals, SBP, and DBP) from the HYPOL dataset across 15 window lengths (60 to 900 seconds). The script removes artifact and values outside ofphysiological range, using pchp outlier interpolation, then compute:
+  - **Single-layer VGs**: Average Degree (DA) for `rr`, `rrsystolic`, and `rrdiastolic` time series independently.
+  - **Duplex VGs**: Inter-layer Mutual Information ($I_{\text{tot2}}$) and Average Degree (DA) for pairwise multiplex networks (`rr_rrsystolic`, `rr_rrdiastolic`, `rrsystolic_rrdiastolic`).
+  - **3-layer Multiplex VGs**: Global Average Degree (DA) for the 3-layer multiplex embedding RR, SBP, and DBP concurrently.
+  Exports results to `HYPOL_noResample_windowLength.xlsx`.
 
 ## EDA SENSING
 
