@@ -1,4 +1,4 @@
-%% Caratteristiche studio
+%% Characteristics of the study
 % time[min] - time track expressed in minutes
 % and synchronised beat-to-beat values of:
 % 
