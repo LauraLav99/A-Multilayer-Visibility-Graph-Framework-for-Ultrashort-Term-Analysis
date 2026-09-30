@@ -1,6 +1,5 @@
-% This routine extracts the VG measures. It computes the the single-participant
-% Visibility Graph layers, the duplex layer Trainer-Trainee, and the duplex layer between
-% participants of the same couple. The inputs are the .mat files containing
+% This routine extracts the VG measures. It computes the duplex layer Trainer-Trainee. 
+% The inputs are the .mat files containing
 % the signal already divided into 60 s and 180 s windows.
 
 clear all
@@ -36,14 +35,8 @@ Results=cell(n_cell+1,11);
 Results{1,1} = "Coupling";
 Results{1,2} ='Subject';
 Results{1,3}="start_with";
-Results{1,4}="AEO";
-Results{1,5}="I_tot";
-Results{1,6}="I_tot2";
-Results{1,7}="DA";
-Results{1,8}="L";
-Results{1,9}="Edd";
-Results{1,10}="Lambda";
-Results{1,11}="C_tot";
+Results{1,4}="I_tot2";
+Results{1,5}="DA";
 end
 
 %adding folder path containg the subroutines used to extract the VG
@@ -98,13 +91,13 @@ for ss = 1:length(sessioni)
     % --- loop along the data acquisition---
     for ff = 1:length(folders)
         expDate = folders{ff};
-        fprintf('\n elaborazione di >> %s <<\n', expDate);
+        fprintf('\n elaboration >> %s <<\n', expDate);
         expDatePath = fullfile(rootPath, expDate);
 
         folderlist = dir(expDatePath);
         foldercells = removedot(folderlist, 0);
-        esgofolders = selectFolder(foldercells, 'ESGO_EDA_SMNA');
-        if isempty(esgofolders), fprintf('Cartella ESGO non trovata per %s. Salto.\n', expDate); continue; end
+        esgofolders = selectFolder(foldercells, 'EDA_SMNA');
+        if isempty(esgofolders), fprintf('Folder did not found %s. Salto.\n', expDate); continue; end
 
         esgopath = fullfile(expDatePath, esgofolders);
         esgophases = dir(esgopath);
@@ -117,22 +110,15 @@ for ss = 1:length(sessioni)
 
             file2load = strcat(phase, '.mat');
             mat_filepath = fullfile(esgopath, phase, file2load);
-            if ~exist(mat_filepath, 'file'), fprintf('File .mat non trovato per %s. Salto.\n', phase); continue; end
+            if ~exist(mat_filepath, 'file'), fprintf('File .mat missing per %s break.\n', phase); continue; end
             dati_caricati = load(mat_filepath);
             phase_cell_array = dati_caricati.phase_cell_array;
 
             esgophasesave = fullfile(sessionsavefolder, strcat(phase,'_NORMAL'));
             create_dir(esgophasesave);
 
-            % --- ANALISI 'SINGLE' E 'COUPLE' (selezionate) ---
-            % The script can work with different options: single (single-participant,
-            % single layer only), couple (VG between participants of the same couple),
-            % and coupleTrainer (Trainer-Trainee duplex VG layer).
-            % Queste analisi salvano i loro file in modo indipendente
-            %visibility_cases_sc = ["single", "couple","coupleTrainer"];
-            visibility_cases_sc = ["coupleTrainer"];
-            %visibility_cases_sc = ["single"];
-            %visibility_cases_sc = ["couple"];
+            % --- Trainer Trainee extraction ---
+
             eseguiAnalisiVisibilita(phase_cell_array, esgophasesave, expDate, sessione, coppie_info, coppieTrainer_info,visibility_cases_sc);
             %
         end % end loop'll' (conditions)

@@ -14,7 +14,7 @@ create_dir(csv_export_path);
 
 phases = {'BODY_SCAN', 'REST'};
 windows = {'60', '180'};
-featureNames = {'AEO', 'I_tot', 'I_tot2', 'DA', 'L', 'Edd', 'Lambda', 'C_tot'};
+featureNames = {'I_tot2', 'DA'};
 
 fprintf('=== CSV EXPORT ===\n\n');
 
@@ -103,8 +103,8 @@ for p = 1:length(phases)
             % -------------------------------------------------------------
             % OOLUMNS OREDER:
             % Columns 1:5 -> Initial metadata
-            % Columns 6:13 -> VG measure
-            % Columns 14+ -> Tracking metadata
+            % Columns 6:8 -> VG descriptors
+            % Columns 9+ -> Tracking metadata
             % -------------------------------------------------------------
             meta_start = {'PseudoTrainer', 'TraineeDate', 'TrainerDate', 'SessionType', 'PairID'};
             meta_end   = {'TraineeCond', 'TrainerCond', 'TrainerSession', 'PairCondition', ...
@@ -121,8 +121,8 @@ for p = 1:length(phases)
         out_csv_path = fullfile(csv_export_path, out_csv_name);
         
         writetable(all_rows_table, out_csv_path);
-        fprintf('  -> Esportato: %s (%d righe totali)\n\n', out_csv_name, height(all_rows_table));
+        fprintf('  -> Exported to: %s (%d total rows)\n\n', out_csv_name, height(all_rows_table));
     end
 end
 
-fprintf('*** TUTTI I FILE CSV SONO STATI ESPORTATI E STANDARDIZZATI CON SUCCESSO ***\n');
+fprintf('*** ALL CSV FILES SUCCESFULLY EXPORTED ***\n');
